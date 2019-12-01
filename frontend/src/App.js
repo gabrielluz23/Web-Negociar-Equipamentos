@@ -1,25 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import logo from './images/logo.jpg';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <div className="container">
+     <img src={logo} alt=""/>
+     <div className="content">
+       <p>
+         Faça <strong> Trocas</strong> e <strong>Vendas</strong> de equipamentos usados, Desapegue.
+       </p>
+      
+       <form >
+       <label htmlFor="nome">Nome *</label>
+         <input type="nome" 
+         id="nome" 
+         placeholder = "Seu Nome"/>
+
+         <label htmlFor="email">E-MAIL *</label>
+         <input type="email" 
+         id="email" 
+         placeholder = "Seu Email"/>
+
+        <label htmlFor="senha">Senha *</label>
+         <input 
+         type="password" 
+         id="senha" 
+         placeholder = "Sua Senha"/>
+
+          <label htmlFor="confsenha">Confirmar Senha *</label>
+         <input 
+         type="password" 
+         id="confsenha" 
+         placeholder = "Confirmar Senha"/>
+
+         <label htmlFor="telefone">Telefone *</label>
+         <input 
+         type="telefone" 
+         id="telefone" 
+         placeholder = "Seu Telefone "/>
+         <button type="submit" className= "btn"> Cadastrar-se </button>
+         <button  className= "btn"> Ja Sou Cadastrado </button>
+       </form>
+     </div>
+   </div>
   );
 }
 

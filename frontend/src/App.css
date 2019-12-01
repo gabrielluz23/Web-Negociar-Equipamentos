@@ -1,22 +1,77 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700i&display=swap');
 
-.App-logo {
-  height: 40vmin;
+*{
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
 }
+html,body, #root {
+  min-height: 100%;
+}
+body {
+  background: #000 url('./images/backgroun.jfif') no-repeat;
+  background-size: cover;
+  -webkit-font-smoothing: antialiased !important;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+}
+body, input,button {
+font-family: 'Roboto',Arial, Helvetica, sans-serif;
+font-size: 14px;
+}
+.container {
+  margin: 80px  auto 0;
+  max-width: 450px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #09d3ac;
+.content {
+  width: 100%;
+  background-color: #FFF;
+  border-radius:  4px;
+  padding: 20px;
+}
+.content form {
+  display: flex;
+  flex-direction: column;
+  
+}
+.content > p {
+ font-size: 22px;
+ line-height: 30px;
+ margin-bottom: 20px;
+}
+.content form label {
+  font-size:  14px;
+  color: #444;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.content form input {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius:  2px;
+  height: 45px;
+  padding: 0 15px;
+  font-size: 16px;
+}
+.content button.btn {
+  border: 0;
+  border-radius: 2px;
+  width: 100%;
+  height:  42px;
+  margin-top: 2px;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f05a5b;
+  color: #FFF;
+  cursor: pointer;
+}
+.content button.btn:hover {
+  background-color: #008000;
+  font-size: 20px;
+  
 }
