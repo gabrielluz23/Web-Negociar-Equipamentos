@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import api from '../../services/api'
-export default function Login() {
+import api from '../../services/api';
+
+
+export default function Login({history }) {
 
     const [email,setemail] = useState('');
 const [senha,setsenha] = useState('');
@@ -8,8 +10,13 @@ const [senha,setsenha] = useState('');
     event.preventDefault();
   const response = await  api.post('/login',{email,senha});
   const {_id} = response.data;
+
   localStorage.setItem("id",_id);
  }
+ function cadastro(){
+     history.push('/cadastro');
+ }
+
    return (
        <>
     <p>
@@ -34,7 +41,7 @@ const [senha,setsenha] = useState('');
     onChange = {event =>setsenha (event.target.value)}/>
 
     <button type="submit" className= "btn"> Fazer Login</button>
-    <button  className= "btn"> Fazer Cadastro </button>
+    <button  className= "btn" onClick={cadastro} > Fazer Cadastro </button>
   </form>
   </>
    )
