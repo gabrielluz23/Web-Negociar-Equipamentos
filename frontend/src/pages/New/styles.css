@@ -1,0 +1,32 @@
+textarea {
+   height: 100px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+label#imagem {
+    margin-bottom: 20px;
+    border: 1px dashed #ddd;
+    background-size: cover;
+    cursor: pointer;
+    height: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+label#imagem input{
+    display: none;
+}
+.iconimg {
+    max-width: 50px;
+    max-height: 50px;
+}
+label#imagem.has-imagem {
+    border:0;
+    height:400px;
+  
+}
+label#imagem.has-imagem  img{
+    display: none;
+}
