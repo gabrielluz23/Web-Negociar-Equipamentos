@@ -3,15 +3,21 @@ import api from '../../services/api';
 
 
 export default function Login({history }) {
-
+  localStorage.clear();
     const [email,setemail] = useState('');
 const [senha,setsenha] = useState('');
  async function handleSubimit(event) {
     event.preventDefault();
   const response = await  api.post('/login',{email,senha});
   const {_id} = response.data;
-
   localStorage.setItem("id",_id);
+  if(_id != null){
+  history.push('/equipamentos')
+  console.log(response)
+}
+  else{
+    window.alert("login invalido")
+  }
  }
  function cadastro(){
      history.push('/cadastro');

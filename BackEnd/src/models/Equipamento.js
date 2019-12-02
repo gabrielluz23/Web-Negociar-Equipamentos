@@ -10,6 +10,12 @@ const EquipamentoSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
-
+}, {
+    toJSON: {
+        virtuals: true,
+    },
 });
+EquipamentoSchema.virtual('imagemEquip_url').get(function() {
+    return `http://localhost:3333/files/${this.imagemEquip}`
+})
 module.exports = mongoose.model('Equipamento',EquipamentoSchema);
