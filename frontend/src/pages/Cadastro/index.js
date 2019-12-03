@@ -10,7 +10,8 @@ const [telefone,settelefone] = useState('');
 
  async function handleSubimit(event) {
     event.preventDefault();
-  const response = await  api.post('/sessions',{email,nome,senha,telefone});
+ 
+    await  api.post('/sessions',{email,nome,senha,telefone});
  }
  
  function login(){

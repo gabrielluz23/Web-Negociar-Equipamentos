@@ -31,3 +31,9 @@ ul.equip-list li span {
     font-size: 15 px;
     color: #999
 }
+.descricao {
+    max-width: 25ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

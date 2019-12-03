@@ -21,8 +21,9 @@ export default function Equipamento() {
     <li key= {equips._id}>
     <header style= {{backgroundImage: `url(${equips.imagemEquip_url})` }}/>
     <strong>{equips.titulo}</strong>
-    <span className= "desc">Descrição: </span> <span> {equips.descricao}</span>
+    <span className= "desc">Descrição: </span> <span className="descricao"> {equips.descricao}</span>
     <span>{equips.valor ? `R$${equips.valor}`:`Apenas Troca`}</span>
+    {/* <button className= "btn">Excluir</button> */}
     </li>
 
         ))}
@@ -31,5 +32,8 @@ export default function Equipamento() {
     <Link to= "/new">
           <button className= "btn"> Vender novo Equipamento </button>
     </Link>
+    <div>
+
+    </div>
    </>
 }
