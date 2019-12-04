@@ -19,6 +19,7 @@ routes.get("/listaUsuarios",SessionController.Index);
 routes.post("/equipamento/:equip_id/negocios",NegocioController.store);
 routes.get("/usuario",UsuarioController.show);
 routes.get("/equipamento",EquipamentoController.index);
+routes.delete("/equipamento",EquipamentoController.destroy);
 routes.post("/equipamento",upload.single('imagemEquip'),EquipamentoController.store);
 routes.get("/equipamentolist",upload.single('imagemEquip'),EquipamentoList.index);
 

@@ -26,5 +26,10 @@ module.exports = {
 
         })
  return res.json(equipamento)
+    },
+    async destroy(req,res) {
+        const{id} = req.query;
+        const  equipamento =await Equipamento.find({_id:id}).deleteOne();
+        return res.json(equipamento)
     }
 }

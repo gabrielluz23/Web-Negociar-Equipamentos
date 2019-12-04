@@ -17,6 +17,7 @@ export default function EquipsList() {
 
     return <View style = { styles.container}>
         <Text style={styles.tittle}>Equipamentos a Venda </Text>
+        
         <FlatList
         style={styles.list}
         data={equips}

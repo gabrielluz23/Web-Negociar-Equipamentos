@@ -1,8 +1,12 @@
 import React,{useState,useEffect} from 'react';
+import { withNavigation} from 'react-navigation';
 import {View,AsyncStorage,Text,StyleSheet,FlatList,Image,TouchableOpacity} from 'react-native';
 
 import api from '../services/api';
-export default function EquipsListUser() {
+import img from '../images/icon.png';
+
+
+ function EquipsListUser({navigation}) {
     const [equips,setequips] = useState([]);
     useEffect(() => {
         async function loadEquips() {
@@ -14,9 +18,20 @@ export default function EquipsListUser() {
         } 
         loadEquips();
     },[]);
+    async function deleteEquip(id) {
+        api.delete('/equipamento',{
+            params:{id}
+        
+        })
+        navigation.navigate('Login');
+       
+    }
 
     return <View style = { styles.container}>
+           
         <Text style={styles.tittle}>Todos os seus Equipamento Cadastrados </Text>
+
+
         <FlatList
         style={styles.list}
         data={equips}
@@ -24,12 +39,14 @@ export default function EquipsListUser() {
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({item })=>(
-            <View style={styles.listItem}>
+            
+            <View  style={styles.listItem}>
+
                 <Image source={{uri:item.imagemEquip_url}} style={styles.img2}/>
                 <Text style= {styles.titulo}>{item.titulo}</Text>
                 <Text style= {styles.desc}>{item.descricao}</Text>
                 <Text style= {styles.valor}>{item.valor ? `R$${item.valor} `: `apenas Troca`}</Text>
-                <TouchableOpacity onPress={()=>{}} style = {styles.button}>
+                <TouchableOpacity onPress={()=>{deleteEquip(item._id)}} style = {styles.button}>
                     <Text style={styles.buttonText}>Excluir</Text>
 
                 </TouchableOpacity>
@@ -40,7 +57,7 @@ export default function EquipsListUser() {
 }
 const styles = StyleSheet.create({
 container: {
- marginTop:30
+ marginTop:30,
 },
 tittle: {
     fontSize: 20,
@@ -55,6 +72,12 @@ listItem: {
  marginRight: 15
 },
     img2: {
+        width: 200,
+        height: 200,
+        resizeMode: 'cover',
+        borderRadius: 2
+    },
+    img3: {
         width: 200,
         height: 200,
         resizeMode: 'cover',
@@ -89,3 +112,4 @@ listItem: {
         fontSize:15,
     },
 })
+export default withNavigation(EquipsListUser);
