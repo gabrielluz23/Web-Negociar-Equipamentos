@@ -26,7 +26,7 @@ import img from '../images/icon.png';
         navigation.navigate('Login');
        
     }
-
+ 
     return <View style = { styles.container}>
            
         <Text style={styles.tittle}>Todos os seus Equipamento Cadastrados </Text>
@@ -77,12 +77,7 @@ listItem: {
         resizeMode: 'cover',
         borderRadius: 2
     },
-    img3: {
-        width: 200,
-        height: 200,
-        resizeMode: 'cover',
-        borderRadius: 2
-    },
+
     titulo:{
         fontSize: 24,
         fontWeight:'bold',

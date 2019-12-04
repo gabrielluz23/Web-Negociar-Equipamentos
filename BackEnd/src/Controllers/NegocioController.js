@@ -1,16 +1,8 @@
-const Negociar = require('../models/Negocios');
+const Negociar = require('../models/Equipamento');
 module.exports = {
-    async store(req,res){
-        const {user_id} = req.headers;
-        const {equip_id} = req.params;
-        const {date} = req.body;
-    
-  const negocio = await Negociar.create({
-      user: user_id,
-      equipamento: equip_id,
-      date,
-  });
-  await negocio.populate('user').populate('equipamento').execPopulate();
+    async show(req,res){
+        const {equip_id} = req.query;
+        const negocio =await Negociar.find({_id:equip_id})
   return res.json(negocio);
 }
 }

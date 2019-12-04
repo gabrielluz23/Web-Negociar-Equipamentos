@@ -1,8 +1,11 @@
 import React,{useState,useEffect} from 'react';
+import {withNavigation} from 'react-navigation';
 import {View,Text,AsyncStorage,StyleSheet,FlatList,Image,TouchableOpacity} from 'react-native';
 
 import api from '../services/api';
-export default function EquipsList() {
+
+
+ function EquipsList({navigation}) {
     const [equips,setequips] = useState([]);
     useEffect(() => {
         async function loadEquips() {
@@ -15,6 +18,9 @@ export default function EquipsList() {
         loadEquips();
     },[]);
 
+    function contato(id) {
+        navigation.navigate('Contato',{id});
+    }
     return <View style = { styles.container}>
         <Text style={styles.tittle}>Equipamentos a Venda </Text>
         
@@ -30,7 +36,7 @@ export default function EquipsList() {
                 <Text style= {styles.titulo}>{item.titulo}</Text>
                 <Text style= {styles.desc}>{item.descricao}</Text>
                 <Text style= {styles.valor}>{item.valor ? `R$${item.valor} `: `apenas Troca`}</Text>
-                <TouchableOpacity onPress={()=>{}} style = {styles.button}>
+                <TouchableOpacity onPress={()=>{contato(item._id)}} style = {styles.button}>
                     <Text style={styles.buttonText}>Entrar em Contato</Text>
 
                 </TouchableOpacity>
@@ -90,3 +96,4 @@ listItem: {
         fontSize:15,
     },
 })
+export default withNavigation(EquipsList)

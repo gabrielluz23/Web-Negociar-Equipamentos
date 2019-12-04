@@ -20,10 +20,7 @@ export default function Equipes({navigation}) {
                     <Text style={styles.buttonText}>Sair</Text>
 
                 </TouchableOpacity>
-                <TouchableOpacity onPress={navegacaoADD} style = {styles.buttonEquip}>
-                    <Text style={styles.AddEquip }>Adicionar Equipamento </Text>
-
-                </TouchableOpacity>
+        
 <ScrollView>
   
     
@@ -57,24 +54,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize:15,
     },
-    AddEquip: {
-        color:'#FFF',
-        fontWeight: 'bold',
-        fontSize:15,
-    },
-    buttonEquip:{
-        height: 32,
-        backgroundColor: '#008000',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 2,
-        marginTop:10
-    },
-    img3: {
-        width: 200,
-        height: 200,
-        resizeMode: 'cover',
-        borderRadius: 2,
-       
-    },
+  
+
+
+
+   
  })
