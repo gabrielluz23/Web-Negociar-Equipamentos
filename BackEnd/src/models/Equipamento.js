@@ -16,6 +16,6 @@ const EquipamentoSchema = new mongoose.Schema({
     },
 });
 EquipamentoSchema.virtual('imagemEquip_url').get(function() {
-    return `http://localhost:3333/files/${this.imagemEquip}`
+    return `http://192.168.11.13:3333/files/${this.imagemEquip}`
 })
 module.exports = mongoose.model('Equipamento',EquipamentoSchema);

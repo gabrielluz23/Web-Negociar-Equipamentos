@@ -1,7 +1,29 @@
-import React from 'react';
-import {View,KeyboardAvoidingView,Image,Text,TextInput,TouchableOpacity,StyleSheet} from 'react-native';
+import React, {useState,useEffect} from 'react';
+import {View,AsyncStorage,KeyboardAvoidingView,Image,Text,TextInput,TouchableOpacity,StyleSheet} from 'react-native';
+
+import api from '../services/api';
+
 import logo from '../images/logo.jpg';
-export default function Login() {
+export default function Login({navigation}) {
+const [email,setemail] = useState('');
+const [senha,setsenha] = useState('');
+
+useEffect(() => {
+AsyncStorage.getItem('id').then(user=>{
+    if(user) {
+        navigation.navigate('Equipes');
+    }
+})
+},[])
+async function handleSubmit() {
+    const response = await api.post('/login',{
+        email,senha
+    })
+    const { _id} = response.data;
+    await AsyncStorage.setItem('id',_id);
+    navigation.navigate('Equipes');
+}
+
     return <KeyboardAvoidingView  behavior="padding" style= {styles.container}>
         <Image source= {logo} style= {styles.image}/>
     <View style= {styles.form}>
@@ -13,6 +35,7 @@ export default function Login() {
         keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
+        onChangeText={setemail}
     />
       <Text style={styles.label}>Sua Senha</Text>
     <TextInput
@@ -22,9 +45,10 @@ export default function Login() {
         autoCapitalize="words"
         autoCorrect={false}
         secureTextEntry={true}
+        onChangeText={setsenha}
 
     />
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity  onPress={handleSubmit}style={styles.button}>
         <Text style={styles.buttonText}>Login</Text>
     </TouchableOpacity>
     </View>
