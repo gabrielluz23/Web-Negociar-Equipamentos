@@ -1,19 +1,22 @@
 import React,{useState,useEffect} from 'react';
-import {View,Text,StyleSheet,FlatList,Image,TouchableOpacity} from 'react-native';
+import {View,Text,AsyncStorage,StyleSheet,FlatList,Image,TouchableOpacity} from 'react-native';
 
 import api from '../services/api';
 export default function EquipsList() {
     const [equips,setequips] = useState([]);
     useEffect(() => {
         async function loadEquips() {
-         const response = await api.get('/equipamentolist')
+            const id = await AsyncStorage.getItem('id')
+         const response = await api.get('/equipamentolist',{ 
+             params:{id}
+         })
          setequips(response.data);
         } 
         loadEquips();
     },[]);
 
     return <View style = { styles.container}>
-        <Text style={styles.tittle}>Todos os Equipamentos </Text>
+        <Text style={styles.tittle}>Equipamentos a Venda </Text>
         <FlatList
         style={styles.list}
         data={equips}

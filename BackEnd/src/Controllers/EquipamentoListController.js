@@ -1,9 +1,15 @@
 const Equipamento = require('../models/Equipamento');
-const User = require('../models/User');
 
 module.exports = {
     async index(req,res){
-        const equipamentos = await Equipamento.find({});
+        
+        const {categoria} = req.query;
+        if(categoria == null){
+            var equipamentos = await Equipamento.find({});
+        }
+        else {
+        var equipamentos = await Equipamento.find({categorias:categoria});
+        }
         return res.json(equipamentos);
     },
 }
