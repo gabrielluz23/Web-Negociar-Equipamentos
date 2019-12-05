@@ -18,8 +18,9 @@ import api from '../services/api';
         loadEquips();
     },[]);
 
-    function contato(id) {
-        navigation.navigate('Contato',{id});
+    function contato(id,user) {
+        navigation.navigate('Contato',{id,user});
+
     }
     return <View style = { styles.container}>
         <Text style={styles.tittle}>Equipamentos a Venda </Text>
@@ -36,7 +37,7 @@ import api from '../services/api';
                 <Text style= {styles.titulo}>{item.titulo}</Text>
                 <Text style= {styles.desc}>{item.descricao}</Text>
                 <Text style= {styles.valor}>{item.valor ? `R$${item.valor} `: `apenas Troca`}</Text>
-                <TouchableOpacity onPress={()=>{contato(item._id)}} style = {styles.button}>
+                <TouchableOpacity onPress={()=>{contato(item._id,item.user)}} style = {styles.button}>
                     <Text style={styles.buttonText}>Entrar em Contato</Text>
 
                 </TouchableOpacity>

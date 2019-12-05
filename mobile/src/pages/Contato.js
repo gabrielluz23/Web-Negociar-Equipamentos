@@ -1,8 +1,7 @@
 import React,{useState,useEffect} from 'react';
-import {View,TouchableOpacity,StyleSheet,Text,Image,AsyncStorage,FlatList,ScrollView} from 'react-native';
+import {View,TouchableOpacity,StyleSheet,Text,Image,FlatList,ScrollView} from 'react-native';
 import logo from '../images/logo.jpg';
 import api from '../services/api';
-import { bold } from 'ansi-colors';
 
 export default function Contato({navigation}) {
     
@@ -21,11 +20,10 @@ export default function Contato({navigation}) {
     },[]);
     useEffect(() => {
         async function loadEquips() {
-            const user_id = await AsyncStorage.getItem('id');
+            const user_id = await navigation.getParam('user');
          const response = await api.get('/unicouser',{
              headers: {user_id}
          })
-         
          setuser(response.data);
         } 
         loadEquips();
@@ -38,7 +36,7 @@ export default function Contato({navigation}) {
     
 
     return <View> 
-
+        
         <Image source= {logo} style= {styles.image}/>
         <TouchableOpacity  onPress={voltar}style={styles.button}>
         <Text style={styles.buttonText}>Voltar</Text>
@@ -48,7 +46,6 @@ export default function Contato({navigation}) {
         style={styles.list}
         data={equips}
         keyExtractor={equip => equip._id}
-        horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({item })=>(
             <View style={styles.listItem}>
@@ -56,20 +53,20 @@ export default function Contato({navigation}) {
             <Text style= {styles.titulo}>{item.titulo}</Text>
             <Text style= {styles.desc}><Text style= {styles.desctitulo}> Descrição do Equipamento: </Text> {item.descricao}</Text>
             <Text style= {styles.valor}> <Text style = {styles.valortitulo}>Valor do Equipamento: </Text> {item.valor ? `R$${item.valor} `: `apenas Troca`}</Text>
-            <FlatList
-            data={users}
-            keyExtractor={user => user._id}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            renderItem={({item })=>(
-            <View >
+            </View>
+        )}/>
+          <FlatList
+        style={styles.list}
+        data={users}
+        keyExtractor={user => user._id}
+        showsHorizontalScrollIndicator={false}
+        renderItem={({item })=>(
+            <View>
             <Text style= {styles.nome}><Text style= {styles.nometitulo}> Nome do Dono: </Text> {item.nome}</Text>
             <Text style= {styles.numero}> <Text style = {styles.numerotitulo}>Entre em contato pelo numero : </Text> {item.telefone}  </Text>
-            <Text style= {styles.email}> <Text style = {styles.emailtitulo}>Entre em contato pelo email : </Text> {item.email}  </Text>
+            <Text style= {styles.email}> <Text style = {styles.emailtitulo}> Ou pelo email : </Text> {item.email}  </Text>
             </View>
-        )}/>
-            </View>
-        )}/>
+            )}/>
        
         </ScrollView>
         </View>
